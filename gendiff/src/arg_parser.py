@@ -15,6 +15,7 @@ def make_parser():
     return parser
 
 
-def run():
+def get_command_args():
     parser = make_parser()
-    parser.parse_args()
+
+    return parser.parse_args()
