@@ -34,9 +34,8 @@ def generate_diff(file_path1, file_path2):
 
             # pop key1 item form file 2 as already seen
             parsed_file2_dict.pop(key1)
-
         # item is present in file1 and isn't present in file 2
-        if value2 is None:
+        else:
             diff.append({
                 'key': key1,
                 'value': value1,
@@ -66,6 +65,4 @@ def generate_diff(file_path1, file_path2):
         for item in diff
     }
 
-    serialized_diff_string = json.dumps(diff, indent=4)
-
-    return serialized_diff_string
+    return json.dumps(diff, indent=4)
