@@ -14,7 +14,7 @@ lint:
 	poetry run flake8 gendiff
 
 test:
-	poetry run pytest --capture=tee-sys
+	poetry run pytest
 
 self_check:
 	poetry check
