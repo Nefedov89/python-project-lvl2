@@ -13,10 +13,13 @@ package-force-reinstall:
 lint:
 	poetry run flake8 gendiff
 
+test:
+	poetry run pytest --capture=tee-sys
+
 self_check:
 	poetry check
 
-check: self_check lint
+check: self_check lint test
 
 build: check
 	poetry build
