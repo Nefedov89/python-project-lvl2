@@ -1,9 +1,12 @@
 import json
+from gendiff.src.decorators import string_replacer
+
 
 ADDED_IN_FIRST_FILE_SIGN = '-'
 ADDED_IN_SECOND_FILE_SIGN = '+'
 
 
+@string_replacer(replace_from='"', replace_to='')
 def generate_diff(file_path1, file_path2):
     diff = []
     parsed_file1_dict = json.load(open(file_path1))
@@ -65,4 +68,4 @@ def generate_diff(file_path1, file_path2):
 
     serialized_diff_string = json.dumps(diff, indent=4)
 
-    return serialized_diff_string.replace('"', '')
+    return serialized_diff_string
