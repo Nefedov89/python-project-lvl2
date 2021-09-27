@@ -1,0 +1,19 @@
+{
+    "_id": "615219921d279d7f9404412c",
+    "index": 0,
+    "guid": "67f5c897-85fd-4f47-9d48-62b6245d0a00",
+    "balance": "$1,370.01",
+    "picture": "http://placehold.it/32x32",
+    "age": 22,
+    "gender": "female",
+    "company": "MIXERS",
+    "email": "nonamichael@mixers.com",
+    "phone": "+1 (815) 537-3211",
+    "address": "573 Seaview Avenue, Mapletown, Maine, 7295",
+    "about": "Minim mollit aliqua sunt laboris proident sit sint.",
+    "registered": "2015-03-31T04:17:13 -02:00",
+    "latitude": 78.554051,
+    "longitude": 44.523611,
+    "greeting": "Hello, Nona Michael! You have 2 unread messages.",
+    "favoriteFruit": "strawberry"
+  }

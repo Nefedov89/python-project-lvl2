@@ -15,7 +15,7 @@ def generate_diff(file_path1, file_path2):
     for key1, value1 in parsed_file1_dict.items():
         value2 = parsed_file2_dict.get(key1)
 
-        if value2:
+        if value2 is not None:
             # item was not changed
             if value1 == value2:
                 diff.append({'key': key1, 'value': value1, 'sign': ' '})
@@ -35,7 +35,7 @@ def generate_diff(file_path1, file_path2):
             # pop key1 item form file 2 as already seen
             parsed_file2_dict.pop(key1)
         # item is present in file1 and isn't present in file 2
-        else:
+        if value2 is None:
             diff.append({
                 'key': key1,
                 'value': value1,

@@ -33,3 +33,7 @@ def _test_files_diff(test_case_fixtures_dir_name):
 
 def test_different_files_1():
     _test_files_diff('different_files_1')
+
+
+def test_different_files_2():
+    _test_files_diff('different_files_2')
