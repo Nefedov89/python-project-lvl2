@@ -37,3 +37,19 @@ def test_different_files_1():
 
 def test_different_files_2():
     _test_files_diff('different_files_2')
+
+
+def test_both_empty_files():
+    _test_files_diff('both_empty_files')
+
+
+def test_empty_file1():
+    _test_files_diff('empty_file1')
+
+
+def test_empty_file2():
+    _test_files_diff('empty_file2')
+
+
+def test_both_identical_files():
+    _test_files_diff('both_identical_files')

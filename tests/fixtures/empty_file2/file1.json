@@ -1,0 +1,20 @@
+{
+    "_id": "61536de0380944b54c2cdcd7",
+    "index": 1,
+    "guid": "babb68bb-a8ae-4297-9591-c6e7314f8918",
+    "isActive": false,
+    "balance": "$2,731.08",
+    "picture": "http://placehold.it/32x32",
+    "age": 35,
+    "eyeColor": "blue",
+    "name": "Jana Willis",
+    "gender": "female",
+    "company": "COMTRAIL",
+    "email": "janawillis@comtrail.com",
+    "phone": "+1 (925) 550-3158",
+    "address": "303 Osborn Street, Topaz, Mississippi, 993",
+    "about": "Velit consectetur proident esse eu ad tempor in culpa sunt duis elit consequat excepteur. Cupidatat deserunt pariatur eu nostrud. Occaecat culpa duis ex est nostrud excepteur reprehenderit id elit non voluptate tempor.\r\n",
+    "registered": "2020-08-11T07:24:19 -02:00",
+    "latitude": 62.970026,
+    "longitude": 141.62355
+  }
