@@ -6,3 +6,5 @@
 ### Examples on asciinema
 
 [Demonstrating of generate_diff function](https://asciinema.org/a/437880)
+
+[Demonstrating of gendiff console command with different file formats](https://asciinema.org/a/439009)
