@@ -31,6 +31,7 @@ jobs:
           python -m pip install poetry
           python -m pip install flake8
           python -m pip install pytest
+          python -m pip install PyYAML
       - name: Run linter and pytest
         run: |
             make check
