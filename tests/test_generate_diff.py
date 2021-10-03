@@ -1,7 +1,7 @@
 import json
 from gendiff import generate_diff
-from gendiff.src.decorators import string_replacer
 from gendiff.src.file_parser import file_formats
+from gendiff.src.formatters import stylish
 
 
 FIXTURES_PATH_PREFIX = './tests/fixtures'
@@ -11,11 +11,10 @@ def setup_function(function):
     print(function)
 
 
-@string_replacer(replace_from=['"', ','], replace_to='')
 def get_correct_diff_as_str(file_path):
-    parsed_file = json.load(open(file_path))
+    diff_tree = json.load(open(file_path))
 
-    return json.dumps(parsed_file, indent=4)
+    return stylish(diff_tree, False)
 
 
 def _test_files_diff(test_case_fixtures_dir_name):
@@ -46,6 +45,10 @@ def test_different_files_1():
 
 def test_different_files_2():
     _test_files_diff('different_files_2')
+
+
+def test_different_files_3():
+    _test_files_diff('different_files_3')
 
 
 def test_both_empty_files():
