@@ -1,9 +1,9 @@
 from gendiff.src.file_parser import parse_file
 from gendiff.src.formatters import stylish
-
-ADDED_IN_FIRST_FILE_OPERATION = '-'
-ADDED_IN_SECOND_FILE_OPERATION = '+'
-NOT_CHANGED_OPERATION = ' '
+from gendiff.src.constants import\
+    ADDED_IN_FIRST_FILE_OPERATION,\
+    ADDED_IN_SECOND_FILE_OPERATION,\
+    NOT_CHANGED_OPERATION
 
 
 def build_internal_view_object(key, value, operation):
