@@ -1,16 +1,14 @@
 from gendiff.src.file_parser import parse_file
-from gendiff.src.formatters import stylish
-from gendiff.src.constants import\
-    ADDED_IN_FIRST_FILE_OPERATION,\
-    ADDED_IN_SECOND_FILE_OPERATION,\
-    NOT_CHANGED_OPERATION
+import gendiff.src.constants as constants
+from gendiff.src.formatters import formatters_handlers_map
 
 
-def build_internal_view_object(key, value, operation):
+def build_internal_view_object(key, value, operation, children=None):
     return {
         'key': key,
         'value': value,
         'operation': operation,
+        'children': children,
     }
 
 
@@ -26,8 +24,9 @@ def build_diff_tree(parsed_file1_dict, parsed_file2_dict):
                 diff.append(
                     build_internal_view_object(
                         key1,
+                        None,
+                        constants.NOT_CHANGED_OPERATION,
                         build_diff_tree(value1, value2),
-                        NOT_CHANGED_OPERATION,
                     )
                 )
             else:
@@ -37,7 +36,7 @@ def build_diff_tree(parsed_file1_dict, parsed_file2_dict):
                         build_internal_view_object(
                             key1,
                             value1,
-                            NOT_CHANGED_OPERATION,
+                            constants.NOT_CHANGED_OPERATION,
                         )
                     )
                 else:
@@ -46,14 +45,14 @@ def build_diff_tree(parsed_file1_dict, parsed_file2_dict):
                         build_internal_view_object(
                             key1,
                             value1,
-                            ADDED_IN_FIRST_FILE_OPERATION,
+                            constants.ADDED_IN_FIRST_FILE_OPERATION,
                         )
                     )
                     diff.append(
                         build_internal_view_object(
                             key1,
                             value2,
-                            ADDED_IN_SECOND_FILE_OPERATION,
+                            constants.ADDED_IN_SECOND_FILE_OPERATION,
                         )
                     )
 
@@ -65,7 +64,7 @@ def build_diff_tree(parsed_file1_dict, parsed_file2_dict):
                 build_internal_view_object(
                     key1,
                     value1,
-                    ADDED_IN_FIRST_FILE_OPERATION,
+                    constants.ADDED_IN_FIRST_FILE_OPERATION,
                 )
             )
 
@@ -74,7 +73,7 @@ def build_diff_tree(parsed_file1_dict, parsed_file2_dict):
         build_internal_view_object(
             key2,
             value2,
-            ADDED_IN_SECOND_FILE_OPERATION
+            constants.ADDED_IN_SECOND_FILE_OPERATION
         )
         for key2, value2 in parsed_file2_dict.items()
     ]
@@ -89,10 +88,18 @@ def build_diff_tree(parsed_file1_dict, parsed_file2_dict):
 """ Generate tow files diff and serialize it to a JSON formatted str """
 
 
-def generate_diff(file_path1, file_path2, formatter=stylish):
+def generate_diff(
+        file_path1,
+        file_path2,
+        formatter=constants.FORMATTER_STYLISH
+):
     parsed_file1_dict = parse_file(file_path1)
     parsed_file2_dict = parse_file(file_path2)
+    formatter_handler = formatters_handlers_map.get(formatter)
 
     diff_tree = build_diff_tree(parsed_file1_dict, parsed_file2_dict)
 
-    return formatter(diff_tree)
+    if not formatter_handler:
+        raise Exception('Unsupported formatter')
+
+    return formatter_handler(diff_tree)
