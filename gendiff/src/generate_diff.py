@@ -1,6 +1,6 @@
 from gendiff.src.file_parser import parse_file
 import gendiff.src.constants as constants
-from gendiff.src.formatters import formatters_handlers_map
+from gendiff.src.formatters import formats_formatters_map
 
 
 def build_internal_view_object(key, value, operation, children=None):
@@ -91,15 +91,15 @@ def build_diff_tree(parsed_file1_dict, parsed_file2_dict):
 def generate_diff(
         file_path1,
         file_path2,
-        formatter=constants.FORMATTER_STYLISH
+        output_format=constants.FORMAT_STYLISH
 ):
     parsed_file1_dict = parse_file(file_path1)
     parsed_file2_dict = parse_file(file_path2)
-    formatter_handler = formatters_handlers_map.get(formatter)
+    formatter = formats_formatters_map.get(output_format)
 
     diff_tree = build_diff_tree(parsed_file1_dict, parsed_file2_dict)
 
-    if not formatter_handler:
+    if not formatter:
         raise Exception('Unsupported formatter')
 
-    return formatter_handler(diff_tree)
+    return formatter(diff_tree)
