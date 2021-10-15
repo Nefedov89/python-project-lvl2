@@ -11,4 +11,4 @@
 
 [Demonstrating of gendiff console command with nested data structure](https://asciinema.org/a/441116)
 
-[Demonstrating of gendiff console command with plain and stylish formats](https://asciinema.org/a/442447)
+[Demonstrating of gendiff console command with plain, stylish and json output formats](https://asciinema.org/a/442473)

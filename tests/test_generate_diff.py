@@ -18,6 +18,7 @@ def get_correct_diff_as_str(test_case_fixtures_dir_name, output_format):
     formats_files_map = {
         constants.FORMAT_STYLISH: 'correct_diff.json',
         constants.FORMAT_PLAIN: 'correct_diff.txt',
+        constants.FORMAT_JSON: 'correct_diff.json',
     }
     correct_file_path = '/'.join([
         FIXTURES_PATH_PREFIX,
@@ -39,6 +40,12 @@ def get_correct_diff_as_str(test_case_fixtures_dir_name, output_format):
         # plain format
         if output_format == constants.FORMAT_PLAIN:
             return file_pointer.read()
+
+        # json format
+        if output_format == constants.FORMAT_JSON:
+            diff_tree = json.load(file_pointer)
+
+            return json.dumps(diff_tree)
 
     return None
 

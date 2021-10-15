@@ -72,7 +72,7 @@ def build_plain_diff_dict_from_tree(diff_tree, outer_key=None):
     return formatted_diff_dict
 
 
-def plain(diff_tree):
+def format_plain(diff_tree):
     formatted_diff_dict = build_plain_diff_dict_from_tree(diff_tree)
     formatted_diff = '\n'.join(
         "Property '{key}' was {operation}{value}".format(

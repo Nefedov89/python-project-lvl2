@@ -60,7 +60,7 @@ def build_stylish_diff_dict_from_tree(diff_tree):
     return formatted_diff_dict
 
 
-def stylish(diff_tree):
+def format_stylish(diff_tree):
     formatted_diff_dict = build_stylish_diff_dict_from_tree(diff_tree)
 
     return dump_stylish_json_to_str(formatted_diff_dict)
