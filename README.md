@@ -10,3 +10,5 @@
 [Demonstrating of gendiff console command with different file formats](https://asciinema.org/a/439009)
 
 [Demonstrating of gendiff console command with nested data structure](https://asciinema.org/a/441116)
+
+[Demonstrating of gendiff console command with plain and stylish formats](https://asciinema.org/a/442447)
