@@ -10,9 +10,6 @@ file_formats = [
 ]
 
 
-""" Tries to parse file and return it json representation as a dictionary """
-
-
 def parse_file(file_path):
     if os.path.getsize(file_path) == 0:
         return {}

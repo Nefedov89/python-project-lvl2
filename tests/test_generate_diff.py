@@ -1,9 +1,10 @@
 import json
 import os.path
+import gendiff.src.constants as constants
 from gendiff import generate_diff
 from gendiff.src.file_parser import file_formats
-from gendiff.src.formatters import formats_formatters_map, dump_stylish_json_to_str
-import gendiff.src.constants as constants
+from gendiff.src.formatters import formats_formatters_map
+from gendiff.src.formatters.stylish import dump_stylish_json_to_str
 
 
 FIXTURES_PATH_PREFIX = './tests/fixtures'
@@ -59,7 +60,8 @@ def _test_files_diff(test_case_fixtures_dir_name):
             if correct_diff is not None:
                 files_diff = generate_diff(
                     '/'.join([files_examples_dir_path, 'file1.' + file_format]),
-                    '/'.join([files_examples_dir_path, 'file2.' + file_format])
+                    '/'.join([files_examples_dir_path, 'file2.' + file_format]),
+                    output_format
                 )
 
                 assert correct_diff == files_diff

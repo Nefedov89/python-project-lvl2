@@ -85,9 +85,6 @@ def build_diff_tree(parsed_file1_dict, parsed_file2_dict):
     return diff
 
 
-""" Generate tow files diff and serialize it to a JSON formatted str """
-
-
 def generate_diff(
         file_path1,
         file_path2,

@@ -2,6 +2,7 @@ import json
 import re
 import gendiff.src.constants as constants
 
+
 operations_signs_map = {
     constants.ADDED_IN_FIRST_FILE_OPERATION: '-',
     constants.ADDED_IN_SECOND_FILE_OPERATION: '+',
@@ -22,10 +23,10 @@ def dump_stylish_json_to_str(formatted_diff_dict):
 
 
 def build_stylish_diff_dict_from_tree(diff_tree):
-    def get_key(item):
-        operation = operations_signs_map.get(item.get('operation'), '')
-        key = item.get('key')
-        children = item.get('children')
+    def get_key(tree_node):
+        operation = operations_signs_map.get(tree_node.get('operation'), '')
+        key = tree_node.get('key')
+        children = tree_node.get('children')
 
         if operation is not None:
             key = '{operation} {key}'.format(
@@ -43,57 +44,23 @@ def build_stylish_diff_dict_from_tree(diff_tree):
 
         return key
 
-    def get_value(item):
-        value = item.get('value')
-        children = item.get('children')
+    def get_value(tree_node):
+        value = tree_node.get('value')
+        children = tree_node.get('children')
 
         return value \
             if children is None \
             else build_stylish_diff_dict_from_tree(children)
 
-    formatted_diff = {
+    formatted_diff_dict = {
         get_key(item): get_value(item)
         for item in diff_tree
     }
 
-    return formatted_diff
+    return formatted_diff_dict
 
 
 def stylish(diff_tree):
     formatted_diff_dict = build_stylish_diff_dict_from_tree(diff_tree)
 
     return dump_stylish_json_to_str(formatted_diff_dict)
-
-
-def build_plain_diff_dict_from_tree(diff_tree):
-    def get_key(item):
-        return 2
-
-    def get_value(item):
-        return 1
-
-    def get_operation(item):
-        return 3
-
-    formatted_diff = ''
-
-    for item in diff_tree:
-        formatted_diff += "\nProperty '{key}' was {operation}{value}".format(
-            key=get_key(item),
-            operation=get_operation(item),
-            value=get_value(item)
-        )
-
-    return formatted_diff
-
-
-def plain(diff_tree):
-    formatted_diff_dict = build_plain_diff_dict_from_tree(diff_tree)
-
-    return formatted_diff_dict
-
-
-formats_formatters_map = {
-    constants.FORMAT_STYLISH: stylish,
-    # constants.FORMAT_PLAIN: plain,
-}
