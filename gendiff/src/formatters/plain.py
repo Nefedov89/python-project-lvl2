@@ -62,6 +62,7 @@ def build_plain_diff_dict_from_tree(diff_tree, outer_key=None):
                 'old_value': old_value,
             }
 
+        # handle children nodes
         if children is not None:
             children_diff = build_plain_diff_dict_from_tree(
                 children,

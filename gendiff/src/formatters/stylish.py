@@ -4,9 +4,9 @@ import gendiff.src.constants as constants
 
 
 operations_signs_map = {
-    constants.ADDED_IN_FIRST_FILE_OPERATION: '-',
-    constants.ADDED_IN_SECOND_FILE_OPERATION: '+',
-    constants.NOT_CHANGED_OPERATION: None,
+    constants.ADDED_IN_FIRST_FILE_OPERATION: '- ',
+    constants.ADDED_IN_SECOND_FILE_OPERATION: '+ ',
+    constants.NOT_CHANGED_OPERATION: '  ',
 }
 
 
@@ -22,40 +22,40 @@ def dump_stylish_json_to_str(formatted_diff_dict):
     return formatted_diff_str
 
 
+def get_item_key(tree_node):
+    operation = tree_node.get('operation')
+    operation_sign = operations_signs_map.get(operation, '')
+    original_key = tree_node.get('key')
+    children = tree_node.get('children')
+
+    if children is not None:
+        operation_sign = ''
+
+    key = '{operation_sign}{original_key}'.format(
+        operation_sign=operation_sign,
+        original_key=original_key
+    )
+
+    return key
+
+
+def get_item_value(tree_node):
+    value = tree_node.get('value')
+    children = tree_node.get('children')
+
+    return value \
+        if children is None \
+        else build_stylish_diff_dict_from_tree(children)
+
+
 def build_stylish_diff_dict_from_tree(diff_tree):
-    def get_key(tree_node):
-        operation = operations_signs_map.get(tree_node.get('operation'), '')
-        key = tree_node.get('key')
-        children = tree_node.get('children')
+    formatted_diff_dict = {}
 
-        if operation is not None:
-            key = '{operation} {key}'.format(
-                operation=operation,
-                key=key
-            )
-        else:
-            not_changed_operation_prefix = '' \
-                if children is not None \
-                else '  '
-            key = '{not_changed_operation_prefix}{key}'.format(
-                not_changed_operation_prefix=not_changed_operation_prefix,
-                key=key
-            )
+    for item in diff_tree:
+        formatted_key = get_item_key(item)
+        formatted_value = get_item_value(item)
 
-        return key
-
-    def get_value(tree_node):
-        value = tree_node.get('value')
-        children = tree_node.get('children')
-
-        return value \
-            if children is None \
-            else build_stylish_diff_dict_from_tree(children)
-
-    formatted_diff_dict = {
-        get_key(item): get_value(item)
-        for item in diff_tree
-    }
+        formatted_diff_dict[formatted_key] = formatted_value
 
     return formatted_diff_dict
 
