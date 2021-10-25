@@ -4,7 +4,6 @@ import gendiff.src.constants as constants
 from gendiff import generate_diff
 from gendiff.src.file_parser import file_formats
 from gendiff.src.formatters import formats_formatters_map
-from gendiff.src.formatters.stylish import dump_stylish_json_to_str
 
 
 FIXTURES_PATH_PREFIX = './tests/fixtures'
@@ -16,7 +15,7 @@ def setup_function(function):
 
 def get_correct_diff_as_str(test_case_fixtures_dir_name, output_format):
     formats_files_map = {
-        constants.FORMAT_STYLISH: 'correct_diff.json',
+        constants.FORMAT_STYLISH: 'correct_diff.txt',
         constants.FORMAT_PLAIN: 'correct_diff.txt',
         constants.FORMAT_JSON: 'correct_diff.json',
     }
@@ -33,9 +32,7 @@ def get_correct_diff_as_str(test_case_fixtures_dir_name, output_format):
 
         # stylish format
         if output_format == constants.FORMAT_STYLISH:
-            diff_tree = json.load(file_pointer)
-
-            return dump_stylish_json_to_str(diff_tree)
+            return file_pointer.read()
 
         # plain format
         if output_format == constants.FORMAT_PLAIN:
@@ -70,6 +67,9 @@ def _test_files_diff(test_case_fixtures_dir_name):
                     '/'.join([files_examples_dir_path, 'file2.' + file_format]),
                     output_format
                 )
+
+                print(correct_diff)
+                print(files_diff)
 
                 assert correct_diff == files_diff
 

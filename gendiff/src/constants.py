@@ -6,3 +6,9 @@ NOT_CHANGED_OPERATION = 'was_not_changed'
 FORMAT_STYLISH = 'stylish'
 FORMAT_PLAIN = 'plain'
 FORMAT_JSON = 'json'
+
+
+FRONT_BRACE_SIGN = '{'
+BACK_BRACE_SIGN = '}'
+
+TWO_SPACES_INDENT = '  '

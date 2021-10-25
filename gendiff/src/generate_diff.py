@@ -1,15 +1,7 @@
 from gendiff.src.file_parser import parse_file
 import gendiff.src.constants as constants
 from gendiff.src.formatters import formats_formatters_map
-
-
-def build_internal_view_object(key, value, operation, children=None):
-    return {
-        'key': key,
-        'value': value,
-        'operation': operation,
-        'children': children,
-    }
+from gendiff.src.helpers import build_internal_view_object
 
 
 def build_diff_tree(parsed_file1_dict, parsed_file2_dict):
@@ -59,7 +51,7 @@ def build_diff_tree(parsed_file1_dict, parsed_file2_dict):
             # pop key1 item form file 2 as already seen
             parsed_file2_dict.pop(key1)
         # item is present in file1 and isn't present in file 2
-        if value2 is None:
+        else:
             diff.append(
                 build_internal_view_object(
                     key1,
