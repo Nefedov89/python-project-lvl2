@@ -68,9 +68,6 @@ def _test_files_diff(test_case_fixtures_dir_name):
                     output_format
                 )
 
-                print(correct_diff)
-                print(files_diff)
-
                 assert correct_diff == files_diff
 
 
