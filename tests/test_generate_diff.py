@@ -83,6 +83,10 @@ def test_different_files_3():
     _test_files_diff('different_files_3')
 
 
+def test_different_files_4():
+    _test_files_diff('different_files_4')
+
+
 def test_both_empty_files():
     _test_files_diff('both_empty_files')
 
