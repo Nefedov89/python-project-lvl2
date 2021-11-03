@@ -2,7 +2,6 @@ from gendiff.src.file_parser import parse_file
 import gendiff.src.constants as constants
 from gendiff.src.formatters import formats_formatters_map
 from gendiff.src.helpers import build_internal_view_object
-from gendiff.src.formatters.stylish import format_stylish
 
 
 def build_diff_tree(parsed_file1_dict, parsed_file2_dict):
@@ -78,14 +77,10 @@ def build_diff_tree(parsed_file1_dict, parsed_file2_dict):
     return diff
 
 
-def generate_diff(
-        file_path1,
-        file_path2,
-        output_format=constants.FORMAT_STYLISH
-):
+def generate_diff(file_path1, file_path2, output_format):
     parsed_file1_dict = parse_file(file_path1)
     parsed_file2_dict = parse_file(file_path2)
-    formatter = formats_formatters_map.get(output_format, format_stylish)
+    formatter = formats_formatters_map.get(output_format)
 
     diff_tree = build_diff_tree(parsed_file1_dict, parsed_file2_dict)
 

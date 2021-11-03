@@ -1,17 +1,17 @@
 import argparse
+import gendiff.src.constants as constants
 
 
 def make_parser():
     parser = argparse.ArgumentParser(description='Generate diff')
+    parser.add_argument(
+        '-f',
+        '--format',
+        default=constants.FORMAT_STYLISH,
+        help='set format of output',
+    )
     parser.add_argument('first_file', type=str)
     parser.add_argument('second_file', type=str)
-    parser.add_argument(
-        '--f',
-        '--format',
-        type=str,
-        metavar='FORMAT',
-        help='set format of output'
-    )
 
     return parser
 
