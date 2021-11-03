@@ -5,4 +5,3 @@ def build_internal_view_object(key, value, operation, children=None):
         'operation': operation,
         'children': children,
     }
-

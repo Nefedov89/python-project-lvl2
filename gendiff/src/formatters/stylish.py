@@ -47,7 +47,7 @@ def stringify_diff_tree(diff_tree, depth=2):
             else '{{\n{value}\n{close_brace}'.format(
                 value=stringify_diff_tree(children, depth + 4),
                 close_brace=constants.ONE_SPACE_INDENT * (depth + 2) + '}'
-            )
+        )
 
         line = '{indent}{operation_sign}{key}:{space}{value}'.format(
             indent=constants.ONE_SPACE_INDENT * depth,
