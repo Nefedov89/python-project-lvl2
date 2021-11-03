@@ -10,9 +10,6 @@ operations_signs_map = {
 
 
 def format_values_for_plain(value):
-    if isinstance(value, str):
-        return value.strip()
-
     if value in [True, False]:
         return str(value).lower()
 
@@ -49,11 +46,10 @@ def stringify_diff_tree(diff_tree, depth=2):
                 close_brace=constants.ONE_SPACE_INDENT * (depth + 2) + '}'
         )
 
-        line = '{indent}{operation_sign}{key}:{space}{value}'.format(
+        line = '{indent}{operation_sign}{key}: {value}'.format(
             indent=constants.ONE_SPACE_INDENT * depth,
             operation_sign=operation_sign,
             key=key,
-            space=constants.ONE_SPACE_INDENT if value != '' else '',
             value=formatted_value,
         )
         lines.append(line)
