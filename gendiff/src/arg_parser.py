@@ -1,5 +1,4 @@
 import argparse
-import gendiff.src.constants as constants
 
 
 def make_parser():
@@ -7,7 +6,7 @@ def make_parser():
     parser.add_argument(
         '-f',
         '--format',
-        default=constants.FORMAT_STYLISH,
+        default=None,
         help='set format of output',
     )
     parser.add_argument('first_file', type=str)

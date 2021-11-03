@@ -77,9 +77,9 @@ def build_diff_tree(parsed_file1_dict, parsed_file2_dict):
     return diff
 
 
-def generate_diff(file_path1, file_path2, output_format):
-    parsed_file1_dict = parse_file(file_path1)
-    parsed_file2_dict = parse_file(file_path2)
+def generate_diff(file1, file2, output_format=constants.FORMAT_STYLISH):
+    parsed_file1_dict = parse_file(file1)
+    parsed_file2_dict = parse_file(file2)
     formatter = formats_formatters_map.get(output_format)
 
     diff_tree = build_diff_tree(parsed_file1_dict, parsed_file2_dict)
